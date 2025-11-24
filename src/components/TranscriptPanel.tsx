@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
-import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 export interface TranscriptMessage {
   id: string;
@@ -24,41 +23,47 @@ export function TranscriptPanel({ messages }: TranscriptPanelProps) {
   }, [messages]);
 
   return (
-    <Card className="w-80 h-full border-l bg-card">
-      <div className="p-6">
-        <div>
-          <h2 className="text-lg font-semibold mb-1">Transcript</h2>
+    <div className="w-80 h-full border-l bg-card/50 backdrop-blur-sm">
+      <div className="p-6 h-full flex flex-col">
+        <div className="space-y-1 mb-6">
+          <h2 className="text-xl font-bold">Transcript</h2>
           <p className="text-sm text-muted-foreground">
-            Real-time conversation log
+            Real-time conversation
           </p>
         </div>
 
-        <Separator className="my-4" />
-
-        <ScrollArea className="h-[calc(100vh-200px)]" ref={scrollRef}>
+        <ScrollArea className="flex-1" ref={scrollRef}>
           {messages.length === 0 ? (
             <div className="flex items-center justify-center h-40 text-muted-foreground text-sm">
               Transcript will appear here
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-4 pr-2">
               {messages.map((message) => (
-                <div key={message.id} className="space-y-1">
-                  <div className="flex items-center justify-between">
+                <div key={message.id} className="space-y-2 animate-fade-in">
+                  <div className="flex items-center gap-2">
+                    <div className={cn(
+                      "w-2 h-2 rounded-full",
+                      message.role === "user" ? "bg-primary" : "bg-accent-foreground"
+                    )} />
                     <span
-                      className={
+                      className={cn(
+                        "text-xs font-semibold",
                         message.role === "user"
-                          ? "text-xs font-medium text-primary"
-                          : "text-xs font-medium text-accent-foreground"
-                      }
+                          ? "text-primary"
+                          : "text-accent-foreground"
+                      )}
                     >
                       {message.role === "user" ? "You" : "Agent"}
                     </span>
-                    <span className="text-xs text-muted-foreground">
-                      {message.timestamp.toLocaleTimeString()}
+                    <span className="text-xs text-muted-foreground ml-auto">
+                      {message.timestamp.toLocaleTimeString([], { 
+                        hour: '2-digit', 
+                        minute: '2-digit' 
+                      })}
                     </span>
                   </div>
-                  <p className="text-sm text-foreground bg-accent/30 rounded-lg p-3">
+                  <p className="text-sm text-foreground bg-accent/20 rounded-lg p-3 leading-relaxed">
                     {message.text}
                   </p>
                 </div>
@@ -67,6 +72,6 @@ export function TranscriptPanel({ messages }: TranscriptPanelProps) {
           )}
         </ScrollArea>
       </div>
-    </Card>
+    </div>
   );
 }
