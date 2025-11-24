@@ -51,7 +51,7 @@ export function ConfigurationPanel({
   };
 
   return (
-    <div className="w-80 h-full border-r bg-card/50 backdrop-blur-sm">
+    <div className="w-96 min-h-screen border-r bg-card/50 backdrop-blur-sm">
       <div className="p-6 space-y-6">
         <div className="space-y-1">
           <h2 className="text-xl font-bold">Configuration</h2>

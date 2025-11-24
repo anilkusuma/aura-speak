@@ -67,7 +67,7 @@ const Index = () => {
   };
 
   return (
-    <div className="flex min-h-screen w-full bg-background">
+    <div className="flex h-screen w-full bg-background overflow-hidden">
       {/* Left Panel - Configuration */}
       <ConfigurationPanel
         onConnect={handleConnect}
@@ -76,9 +76,9 @@ const Index = () => {
       />
 
       {/* Center - Voice Orb */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <header className="border-b bg-card/50 backdrop-blur-sm px-6 py-4 flex items-center justify-between">
+        <header className="border-b bg-card/50 backdrop-blur-sm px-6 py-4 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
               <Mic className="w-5 h-5 text-primary" />
