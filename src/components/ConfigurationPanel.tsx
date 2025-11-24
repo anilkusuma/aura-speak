@@ -11,7 +11,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Phone, Mic, MicOff } from "lucide-react";
-import { Card } from "@/components/ui/card";
 
 interface ConfigurationPanelProps {
   onConnect: (config: ConnectionConfig) => void;
@@ -52,12 +51,12 @@ export function ConfigurationPanel({
   };
 
   return (
-    <Card className="w-80 h-full border-r bg-card">
+    <div className="w-80 h-full border-r bg-card/50 backdrop-blur-sm">
       <div className="p-6 space-y-6">
-        <div>
-          <h2 className="text-lg font-semibold mb-1">Configuration</h2>
+        <div className="space-y-1">
+          <h2 className="text-xl font-bold">Configuration</h2>
           <p className="text-sm text-muted-foreground">
-            Set up your voice agent connection
+            Set up your voice agent
           </p>
         </div>
 
@@ -161,6 +160,6 @@ export function ConfigurationPanel({
           )}
         </div>
       </div>
-    </Card>
+    </div>
   );
 }
