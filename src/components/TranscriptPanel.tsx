@@ -23,8 +23,8 @@ export function TranscriptPanel({ messages }: TranscriptPanelProps) {
   }, [messages]);
 
   return (
-    <div className="w-80 h-full border-l bg-card/50 backdrop-blur-sm">
-      <div className="p-6 h-full flex flex-col">
+    <div className="w-96 min-h-screen border-l bg-card/50 backdrop-blur-sm">
+      <div className="p-6 h-screen flex flex-col">
         <div className="space-y-1 mb-6">
           <h2 className="text-xl font-bold">Transcript</h2>
           <p className="text-sm text-muted-foreground">
